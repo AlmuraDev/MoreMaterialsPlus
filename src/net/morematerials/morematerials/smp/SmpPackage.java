@@ -40,8 +40,8 @@ import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.imageio.ImageIO;
-//import me.znickq.furnaceapi.SpoutFurnaceRecipe;
-//import me.znickq.furnaceapi.SpoutFurnaceRecipes;
+import me.znickq.furnaceapi.SpoutFurnaceRecipe;
+import me.znickq.furnaceapi.SpoutFurnaceRecipes;
 import net.morematerials.morematerials.Main;
 import net.morematerials.morematerials.manager.MainManager;
 import net.morematerials.morematerials.materials.CustomShape;
@@ -59,14 +59,13 @@ import org.getspout.spoutapi.inventory.SpoutShapelessRecipe;
 import org.getspout.spoutapi.material.Material;
 import org.getspout.spoutapi.material.MaterialData;
 
-import com.github.Zarklord1.FurnaceApi.FurnaceRecipes;
-
 public class SmpPackage {
 	private SmpManager smpManager = null;
 	public String name = "";
 	private ZipFile smpFile = null;
 	private Map<String, SMCustomBlock> customBlocksList = new HashMap<String, SMCustomBlock>();
 	private Map<String, SMCustomItem> customItemsList = new HashMap<String, SMCustomItem>();
+	private List<SpoutFurnaceRecipe> furnaceRecipeList = new ArrayList<SpoutFurnaceRecipe>();
 	private List<Recipe> craftingRecipeList = new ArrayList<Recipe>();
 
 	public SmpPackage(SmpManager smpManager, ZipFile smpFile, String name) {
@@ -195,8 +194,10 @@ public class SmpPackage {
 					Map<String, Material> materialList = this.smpManager.getMaterial(materialName);
 					ingredient = materialList.get((String) materialList.keySet().toArray()[0]);
 				}
-				FurnaceRecipes.CustomFurnaceRecipe(new SpoutItemStack(material, 1), ingredient.getRawId(), ingredient.getRawData());
-				
+				SpoutFurnaceRecipe fRecipe;
+				fRecipe = new SpoutFurnaceRecipe(new SpoutItemStack(ingredient, 1), new SpoutItemStack(material, 1));
+				SpoutFurnaceRecipes.registerSpoutRecipe(fRecipe);
+				this.furnaceRecipeList.add(fRecipe);
 			} else if (type.equalsIgnoreCase("shaped")) {
 				SpoutShapedRecipe sRecipe = new SpoutShapedRecipe(
 					new SpoutItemStack(material, amount)

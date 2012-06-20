@@ -67,7 +67,6 @@ public class SMListener implements Listener {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void InventoryCraft(InventoryCraftEvent event) {
 		if (event.getResult() == null) {
@@ -161,7 +160,6 @@ public class SMListener implements Listener {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void PlayerMove(PlayerMoveEvent event) {
 		// If any other plugin already canceled this event
@@ -181,8 +179,7 @@ public class SMListener implements Listener {
 		}
 
 		// Setting the player walkspeed.
-		if (item != null && item instanceof SMCustomBlock
-				&& ((SMCustomBlock) item).getSpeedMultiplier() != 1) {
+		if (item != null && item instanceof SMCustomBlock && ((SMCustomBlock) item).getSpeedMultiplier() != 1) {
 			player.setAirSpeedMultiplier(((SMCustomBlock) item).getSpeedMultiplier());
 			player.setWalkingMultiplier(((SMCustomBlock) item).getSpeedMultiplier());
 		} else {
@@ -204,9 +201,9 @@ public class SMListener implements Listener {
 			walkAction = ((SMCustomBlock) item).getActionWalk();
 		}
 
-		// TODO check if the block is also different than the last saved one.
+		//TODO check if the block is also different than the last saved one.
 		if (walkAction != null) {
-			// TODO save here the block for the player.
+			//TODO save here the block for the player.
 			this.doMaterialAction(walkAction, player, (SMCustomBlock) item);
 
 			// Materials can be consumed.
@@ -214,7 +211,6 @@ public class SMListener implements Listener {
 				block.setType(org.bukkit.Material.AIR);
 			}
 		}
-
 	}
 
 	@EventHandler
@@ -298,7 +294,6 @@ public class SMListener implements Listener {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	private void doMaterialAction(MaterialAction useAction, SpoutPlayer player, SMCustomBlock block) {
 
 		// Adding bypass permission
