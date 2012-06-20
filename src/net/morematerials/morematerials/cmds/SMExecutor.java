@@ -44,6 +44,7 @@ public class SMExecutor implements CommandExecutor {
 		this.plugin = plugin;
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length == 0) {
 			sender.sendMessage(MainManager.getUtils().getMessage(
@@ -58,14 +59,12 @@ public class SMExecutor implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("?") || args[0].equalsIgnoreCase("help")) {
 			// Someone specified the command to get help for.
 			if (args.length > 1) {
-				// TODO unsafe cast warning remove
 				Map<String, Object> commands = (HashMap<String, Object>) this.plugin.getDescription().getCommands().values();
 				if (!commands.containsKey(args[1])) {
 					return false;
 				}
 				sender.sendMessage(MainManager.getUtils().getMessage("Help page for /" + args[1], Level.SEVERE));
 				sender.sendMessage(MainManager.getUtils().getMessage("---------------------------------"));
-				// TODO unsafe cast warning remove
 				String commandInfo = (String) ((HashMap<String, Object>) commands.get(args[1])).get("usage");
 				for (String usage : StringUtils.split(commandInfo,"\n")) {
 					usage = usage.replaceAll("<command>", args[1] + ChatColor.GOLD);
