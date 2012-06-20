@@ -52,7 +52,12 @@ public class GiveExecutor implements CommandExecutor {
 		// Amount of objects to give.
 		int amount = 1;
 		if (args.length > 1) {
-			amount = Integer.parseInt(args[1]);
+			try {
+				amount = Integer.parseInt(args[1]);
+			} catch (Exception e) {
+				sender.sendMessage(MainManager.getUtils().getMessage("Second parameter must be a number."));
+				return true;
+			}
 		}
 
 		SpoutPlayer player = (SpoutPlayer) sender;
@@ -60,7 +65,6 @@ public class GiveExecutor implements CommandExecutor {
 
 		// Permission check
 		if (!MainManager.getUtils().hasPermission(sender, "morematerials.give", true)
-			&& !MainManager.getUtils().hasPermission(sender, "morematerials.give." + args[0], true)
 		) {
 			return true;
 		}

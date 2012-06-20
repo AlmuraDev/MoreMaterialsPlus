@@ -59,12 +59,6 @@ public class AdminExecutor implements CommandExecutor {
 			}
 		}
 
-		// Parameter is "updates"
-		if ("updates".equals(args[0])) {
-			//TODO check all smp versions for newer ones. (found in _version_smp file)
-			//TODO show list with all updateable packages.
-		}
-
 		return true;
 	}
 }
