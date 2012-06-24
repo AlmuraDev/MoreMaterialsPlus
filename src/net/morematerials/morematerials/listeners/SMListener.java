@@ -248,6 +248,7 @@ public class SMListener implements Listener {
 			if (item != null) {
 				useAction = item.getActionL();
 				if (action == Action.LEFT_CLICK_AIR) item.getHandlerL().onActivation(null, player);
+				else if (action == Action.LEFT_CLICK_BLOCK) item.getHandlerL().onActivation(event.getClickedBlock().getLocation(), player);
 			}
 			if (action == Action.LEFT_CLICK_BLOCK) {
 				if (((SpoutBlock) event.getClickedBlock()).getCustomBlock() != null) {
@@ -265,6 +266,7 @@ public class SMListener implements Listener {
 			if (item != null) {
 				useAction = item.getActionR();
 				if (action == Action.RIGHT_CLICK_AIR) item.getHandlerR().onActivation(null, player);
+				else if (action == Action.RIGHT_CLICK_BLOCK) item.getHandlerR().onActivation(event.getClickedBlock().getLocation(), player);
 			}
 			if (action == Action.RIGHT_CLICK_BLOCK) {
 				if (((SpoutBlock) event.getClickedBlock()).getCustomBlock() != null) {
