@@ -49,7 +49,7 @@ public class SMCustomBlock extends GenericCustomBlock {
 	private GenericHandler redstonePoweredHandler;
 
 	public SMCustomBlock(SmpPackage smpPackage, String name, int blockID, GenericBlockDesign design, boolean rotate) {
-		super(smpPackage.getSmpManager().getPlugin(), name, blockID, design, boolean rotate);
+		super(smpPackage.getSmpManager().getPlugin(), name, blockID, design, rotate);
 		this.smpPackage = smpPackage;
 	}
 
