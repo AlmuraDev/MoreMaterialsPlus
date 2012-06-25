@@ -38,6 +38,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 	private static FileConfiguration config;
+	private final PluginManager pm = Bukkit.getPluginManager();
+	public static boolean furnaceApiE = false;
 
 	@Override
 	public void onEnable() {
@@ -58,6 +60,13 @@ public class Main extends JavaPlugin {
 			MainManager.getUtils().log("Could not access default files!", Level.SEVERE);
 		}
 
+		if (!pm.isPluginEnabled(pm.getPlugin("Furnace Api"))) {
+			MainManager.getUtils().log("Can't find the Furnace Api, furnace feature disabled!");
+		} else {
+			MainManager.getUtils().log("Hooked into the Furnace Api");
+			furnaceApiE = true;
+		}
+		
 		// Our super all-you-can-eat manager :D
 		MainManager.init();
 
