@@ -22,12 +22,12 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.manager;
+package net.morematerials.manager;
 
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.handlers.HandlerManager;
-import net.morematerials.morematerials.smp.SmpManager;
-import net.morematerials.morematerials.utils.WebManager;
+import net.morematerials.Main;
+import net.morematerials.handlers.HandlerManager;
+import net.morematerials.smp.SmpManager;
+import net.morematerials.utils.WebManager;
 
 public class MainManager {
 	private static Main plugin;

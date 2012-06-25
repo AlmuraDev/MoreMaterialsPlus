@@ -22,16 +22,16 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.manager;
+package net.morematerials.manager;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
-import me.znickq.furnaceapi.SpoutFurnaceRecipe;
-import me.znickq.furnaceapi.SpoutFurnaceRecipes;
-import net.morematerials.morematerials.Main;
+
+import net.morematerials.Main;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.Recipe;
@@ -41,8 +41,9 @@ import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
 import org.getspout.spoutapi.inventory.SpoutShapelessRecipe;
 import org.getspout.spoutapi.material.Material;
 
+import com.zarklord1.furnace.FurnaceRecipes;
+
 public class LegacyManager {
-	private List<SpoutFurnaceRecipe> furnaceRecipeList = new ArrayList<SpoutFurnaceRecipe>();
 	private List<Recipe> craftingRecipeList = new ArrayList<Recipe>();
 	private Main plugin;
 
@@ -90,12 +91,7 @@ public class LegacyManager {
 					Map<String, Material> materialList = MainManager.getSmpManager().getMaterial(materialName);
 					ingredient = materialList.get((String) materialList.keySet().toArray()[0]);
 				}
-				SpoutFurnaceRecipe fRecipe = new SpoutFurnaceRecipe(
-					new SpoutItemStack(ingredient, 1),
-					new SpoutItemStack(material, amount)
-				);
-				SpoutFurnaceRecipes.registerSpoutRecipe(fRecipe);
-				this.furnaceRecipeList.add(fRecipe);
+				FurnaceRecipes.CustomFurnaceRecipe(new SpoutItemStack(material, amount), ingredient.getRawId(), ingredient.getRawData());
 			} else if (type.equalsIgnoreCase("shaped")) {
 				SpoutShapedRecipe sRecipe = new SpoutShapedRecipe(
 					new SpoutItemStack(material, amount)

@@ -22,12 +22,13 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.materials;
+package net.morematerials.materials;
 
-import net.morematerials.morematerials.handlers.GenericHandler;
-import net.morematerials.morematerials.handlers.TheBasicHandler;
-import net.morematerials.morematerials.manager.MainManager;
-import net.morematerials.morematerials.smp.SmpPackage;
+import net.morematerials.handlers.GenericHandler;
+import net.morematerials.handlers.TheBasicHandler;
+import net.morematerials.manager.MainManager;
+import net.morematerials.smp.SmpPackage;
+
 import org.bukkit.Bukkit;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;

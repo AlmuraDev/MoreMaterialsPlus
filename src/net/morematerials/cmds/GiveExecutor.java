@@ -22,11 +22,13 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.cmds;
+package net.morematerials.cmds;
 
 import java.util.Map;
 import java.util.logging.Level;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.manager.MainManager;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

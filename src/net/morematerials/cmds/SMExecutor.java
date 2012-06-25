@@ -22,13 +22,15 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.cmds;
+package net.morematerials.cmds;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

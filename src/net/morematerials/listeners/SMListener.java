@@ -21,16 +21,17 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-package net.morematerials.morematerials.listeners;
+package net.morematerials.listeners;
 
 import java.util.Map;
 import java.util.logging.Level;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
-import net.morematerials.morematerials.materials.MaterialAction;
-import net.morematerials.morematerials.materials.SMCustomBlock;
-import net.morematerials.morematerials.materials.SMCustomItem;
-import net.morematerials.morematerials.utils.WebManager;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
+import net.morematerials.materials.MaterialAction;
+import net.morematerials.materials.SMCustomBlock;
+import net.morematerials.materials.SMCustomItem;
+import net.morematerials.utils.WebManager;
 
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;

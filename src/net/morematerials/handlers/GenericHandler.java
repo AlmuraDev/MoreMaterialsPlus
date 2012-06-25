@@ -22,9 +22,10 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.handlers;
+package net.morematerials.handlers;
 
-import net.morematerials.morematerials.Main;
+import net.morematerials.Main;
+
 import org.bukkit.Location;
 import org.getspout.spoutapi.player.SpoutPlayer;
 

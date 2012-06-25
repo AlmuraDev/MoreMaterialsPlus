@@ -22,7 +22,7 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.manager;
+package net.morematerials.manager;
 
 import java.io.File;
 import java.util.HashMap;
@@ -30,8 +30,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.materials.SMCustomBlock;
+
+import net.morematerials.Main;
+import net.morematerials.materials.SMCustomBlock;
+
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.block.Block;

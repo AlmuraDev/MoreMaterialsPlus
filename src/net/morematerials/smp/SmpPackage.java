@@ -22,7 +22,7 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.smp;
+package net.morematerials.smp;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,11 +40,13 @@ import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.imageio.ImageIO;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
-import net.morematerials.morematerials.materials.CustomShape;
-import net.morematerials.morematerials.materials.SMCustomBlock;
-import net.morematerials.morematerials.materials.SMCustomItem;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
+import net.morematerials.materials.CustomShape;
+import net.morematerials.materials.SMCustomBlock;
+import net.morematerials.materials.SMCustomItem;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.Recipe;
 import org.getspout.spoutapi.SpoutManager;
@@ -57,7 +59,7 @@ import org.getspout.spoutapi.inventory.SpoutShapelessRecipe;
 import org.getspout.spoutapi.material.Material;
 import org.getspout.spoutapi.material.MaterialData;
 
-import com.github.Zarklord1.FurnaceApi.FurnaceRecipes;
+import com.zarklord1.furnace.FurnaceRecipes;
 
 public class SmpPackage {
 	private SmpManager smpManager = null;
@@ -65,7 +67,6 @@ public class SmpPackage {
 	private ZipFile smpFile = null;
 	private Map<String, SMCustomBlock> customBlocksList = new HashMap<String, SMCustomBlock>();
 	private Map<String, SMCustomItem> customItemsList = new HashMap<String, SMCustomItem>();
-	private List<SpoutFurnaceRecipe> furnaceRecipeList = new ArrayList<SpoutFurnaceRecipe>();
 	private List<Recipe> craftingRecipeList = new ArrayList<Recipe>();
 
 	public SmpPackage(SmpManager smpManager, ZipFile smpFile, String name) {
@@ -183,7 +184,7 @@ public class SmpPackage {
 			String type = (String) recipe.get("type");
 			Integer amount = (Integer) recipe.get("amount");
 			amount = amount == null ? 1 : amount;
-			if (type.equalsIgnoreCase("furnace") && Main.furnaceApiE) {
+			if (type.equalsIgnoreCase("furnace")) {
 				String ingredientName = (String) recipe.get("ingredients");
 				Material ingredient;
 				if (ingredientName.matches("^[0-9]+$")) {

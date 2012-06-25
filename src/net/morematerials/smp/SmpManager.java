@@ -22,7 +22,7 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.smp;
+package net.morematerials.smp;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,8 +32,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.zip.ZipFile;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
+
 import org.getspout.spoutapi.inventory.SpoutItemStack;
 import org.getspout.spoutapi.material.Material;
 

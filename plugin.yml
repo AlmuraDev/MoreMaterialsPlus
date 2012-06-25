@@ -6,7 +6,7 @@ website: http://www.morematerials.net
 
 depend: [Spout]
 softdepend: [Furnace Api]
-main: net.morematerials.morematerials.Main
+main: net.morematerials.Main
 
 commands:
   mm:

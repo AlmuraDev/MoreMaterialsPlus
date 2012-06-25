@@ -22,10 +22,12 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.manager;
+package net.morematerials.manager;
 
 import java.util.logging.Level;
-import net.morematerials.morematerials.Main;
+
+import net.morematerials.Main;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

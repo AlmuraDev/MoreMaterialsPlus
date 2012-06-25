@@ -22,7 +22,7 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.utils;
+package net.morematerials.utils;
 
 import com.sun.net.httpserver.HttpServer;
 import java.io.BufferedReader;
@@ -30,8 +30,9 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.URL;
 import java.util.logging.Level;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
 
 public class WebManager {
 	private Main instance;

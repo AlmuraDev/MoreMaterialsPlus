@@ -22,7 +22,7 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.materials;
+package net.morematerials.materials;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,8 +33,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.smp.SmpManager;
+import net.morematerials.Main;
+import net.morematerials.smp.SmpManager;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

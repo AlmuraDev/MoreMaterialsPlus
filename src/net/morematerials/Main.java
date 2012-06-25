@@ -22,24 +22,25 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials;
+package net.morematerials;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
-import net.morematerials.morematerials.cmds.AdminExecutor;
-import net.morematerials.morematerials.cmds.GiveExecutor;
-import net.morematerials.morematerials.cmds.SMExecutor;
-import net.morematerials.morematerials.listeners.SMListener;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.cmds.AdminExecutor;
+import net.morematerials.cmds.GiveExecutor;
+import net.morematerials.cmds.SMExecutor;
+import net.morematerials.listeners.SMListener;
+import net.morematerials.manager.MainManager;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 	private static FileConfiguration config;
-	private final PluginManager pm = Bukkit.getPluginManager();
-	public static boolean furnaceApiE = false;
 
 	@Override
 	public void onEnable() {
@@ -58,13 +59,6 @@ public class Main extends JavaPlugin {
 			this.checkIntegrity();
 		} catch (IOException exception) {
 			MainManager.getUtils().log("Could not access default files!", Level.SEVERE);
-		}
-
-		if (!pm.isPluginEnabled(pm.getPlugin("Furnace Api"))) {
-			MainManager.getUtils().log("Can't find the Furnace Api, furnace feature disabled!");
-		} else {
-			MainManager.getUtils().log("Hooked into the Furnace Api");
-			furnaceApiE = true;
 		}
 		
 		// Our super all-you-can-eat manager :D

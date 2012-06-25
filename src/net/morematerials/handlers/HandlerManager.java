@@ -22,15 +22,16 @@
  THE SOFTWARE.
  */
 
-package net.morematerials.morematerials.handlers;
+package net.morematerials.handlers;
 
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
-import net.morematerials.morematerials.Main;
-import net.morematerials.morematerials.manager.MainManager;
+
+import net.morematerials.Main;
+import net.morematerials.manager.MainManager;
 
 public class HandlerManager {
 	private Map<String, Class<?>> handlers = new HashMap<String, Class<?>>();
