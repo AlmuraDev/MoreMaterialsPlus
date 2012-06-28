@@ -1,0 +1,7 @@
+world: #world name
+    base_block: #block name
+        MinY: 1 
+        MaxY: 128
+        Veins: 100
+        VeinSize: 30
+        Replaces: 1 3 13
