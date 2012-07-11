@@ -25,6 +25,7 @@ package net.morematerials.listeners;
 
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.morematerials.Main;
 import net.morematerials.manager.MainManager;
@@ -33,7 +34,9 @@ import net.morematerials.materials.SMCustomBlock;
 import net.morematerials.materials.SMCustomItem;
 import net.morematerials.utils.WebManager;
 
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.block.CraftBlock;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -175,8 +178,17 @@ public class SMListener implements Listener {
 		SpoutPlayer player = (SpoutPlayer) event.getPlayer();
 
 		// Getting the block below the player
-		SpoutBlock block = (SpoutBlock) player.getWorld().getBlockAt(player.getLocation().add(0, -1, 0));
+		//SpoutBlock block = (SpoutBlock) player.getWorld().getBlockAt(player.getLocation().add(0, -1, 0));
+		Block eventBlock = player.getWorld().getBlockAt(player.getLocation().add(0, -1, 0));
 
+if (eventBlock instanceof CraftBlock) {
+return;
+}
+
+SpoutBlock block = (SpoutBlock) eventBlock;
+
+
+		
 		// This only applies for custom blocks
 		Object item = null;
 		if (block.isCustomBlock()) {
@@ -205,7 +217,7 @@ public class SMListener implements Listener {
 		if (item != null && item instanceof SMCustomBlock && ((SMCustomBlock) item).getActionWalk() != null) {
 			walkAction = ((SMCustomBlock) item).getActionWalk();
 		}
-		
+
 		if (item != null && item instanceof SMCustomBlock) {
 			((SMCustomBlock) item).getStepHandler().onActivation(event.getTo(), player);
 		}
@@ -232,7 +244,7 @@ public class SMListener implements Listener {
 		SpoutPlayer player = (SpoutPlayer) event.getPlayer();
 		Object object = null;
 		if(event.getPlayer().getItemInHand()!=null)
-		object=MainManager.getSmpManager().getMaterial(new SpoutItemStack(player.getItemInHand()));
+			object=MainManager.getSmpManager().getMaterial(new SpoutItemStack(player.getItemInHand()));
 
 		SMCustomItem item = null;
 
@@ -258,8 +270,8 @@ public class SMListener implements Listener {
 			if (action == Action.LEFT_CLICK_BLOCK) {
 				if (((SpoutBlock) event.getClickedBlock()).getCustomBlock() != null) {
 					Object blockMaterial = MainManager.getSmpManager().getMaterial(
-						new SpoutItemStack(((SpoutBlock) event.getClickedBlock()).getCustomBlock().getBlockItem(), 1)
-					);
+							new SpoutItemStack(((SpoutBlock) event.getClickedBlock()).getCustomBlock().getBlockItem(), 1)
+							);
 					if (blockMaterial instanceof SMCustomBlock) {
 						block = (SMCustomBlock) blockMaterial;
 						useAction = block.getActionL();
@@ -276,7 +288,7 @@ public class SMListener implements Listener {
 			if (action == Action.RIGHT_CLICK_BLOCK) {
 				if (((SpoutBlock) event.getClickedBlock()).getCustomBlock() != null) {
 					Object blockMaterial = MainManager.getSmpManager().getMaterial(
-									new SpoutItemStack(((SpoutBlock) event.getClickedBlock()).getCustomBlock().getBlockItem(), 1));
+							new SpoutItemStack(((SpoutBlock) event.getClickedBlock()).getCustomBlock().getBlockItem(), 1));
 					if (blockMaterial instanceof SMCustomBlock) {
 						block = (SMCustomBlock) blockMaterial;
 						useAction = block.getActionR();
@@ -386,47 +398,49 @@ public class SMListener implements Listener {
 			player.chat(useAction.getAction());
 		}
 	}
-	
-	@EventHandler
+
+	@EventHandler(ignoreCancelled = true)
 	public void onBlockPlace(BlockPlaceEvent event) {
-		if (event.isCancelled()) {
+		if (!(event.getBlock() instanceof Block) || event.getBlock() instanceof CraftBlock) {
 			return;
 		}
 
+
 		SpoutPlayer player = (SpoutPlayer) event.getPlayer();
 		SpoutBlock block = (SpoutBlock) event.getBlockPlaced();
-		
+
 		Object item = null;
 		if (block.isCustomBlock()) {
 			item = MainManager.getSmpManager().getMaterial(new SpoutItemStack(block.getCustomBlock().getBlockItem(), 1));			
 		}
-		
+
 		if (item != null && item instanceof SMCustomBlock) {
 			if (block.isBlockPowered() || block.isBlockFacePowered(BlockFace.NORTH) || block.isBlockFacePowered(BlockFace.SOUTH) || block.isBlockFacePowered(BlockFace.WEST) || block.isBlockFacePowered(BlockFace.EAST)) {
 				((SMCustomBlock) item).getRedStonePoweredHandler().onActivation(block.getLocation(), player);
 			}
 		}
+
 	}
-	
+
 	@EventHandler
 	public void onBlockPhysics(BlockPhysicsEvent event) {
 		if (event.isCancelled()) {
 			return;
 		}
-		
-		SpoutBlock block = (SpoutBlock) event.getBlock();
+		if (event.getBlock() instanceof SpoutBlock) {
+			SpoutBlock block = (SpoutBlock) event.getBlock();			
+			Object item = null;
+			if (block.isCustomBlock()) {
+				item = MainManager.getSmpManager().getMaterial(new SpoutItemStack(block.getCustomBlock().getBlockItem(), 1));			
+			}
 
-		Object item = null;
-		if (block.isCustomBlock()) {
-			item = MainManager.getSmpManager().getMaterial(new SpoutItemStack(block.getCustomBlock().getBlockItem(), 1));			
-		}
-		
-		if (item != null && item instanceof SMCustomBlock) {
-			if (block.isBlockPowered() || block.isBlockFacePowered(BlockFace.NORTH) || block.isBlockFacePowered(BlockFace.SOUTH) || block.isBlockFacePowered(BlockFace.WEST) || block.isBlockFacePowered(BlockFace.EAST)
-				|| block.isBlockFaceIndirectlyPowered(BlockFace.NORTH) || block.isBlockFaceIndirectlyPowered(BlockFace.SOUTH) || block.isBlockFaceIndirectlyPowered(BlockFace.EAST) || block.isBlockFaceIndirectlyPowered(BlockFace.WEST)
-				|| block.isBlockFaceIndirectlyPowered(BlockFace.DOWN)) 
-			{
-				((SMCustomBlock) item).getRedStonePoweredHandler().onActivation(block.getLocation(), null);
+			if (item != null && item instanceof SMCustomBlock) {
+				if (block.isBlockPowered() || block.isBlockFacePowered(BlockFace.NORTH) || block.isBlockFacePowered(BlockFace.SOUTH) || block.isBlockFacePowered(BlockFace.WEST) || block.isBlockFacePowered(BlockFace.EAST)
+						|| block.isBlockFaceIndirectlyPowered(BlockFace.NORTH) || block.isBlockFaceIndirectlyPowered(BlockFace.SOUTH) || block.isBlockFaceIndirectlyPowered(BlockFace.EAST) || block.isBlockFaceIndirectlyPowered(BlockFace.WEST)
+						|| block.isBlockFaceIndirectlyPowered(BlockFace.DOWN)) 
+				{
+					((SMCustomBlock) item).getRedStonePoweredHandler().onActivation(block.getLocation(), null);
+				}
 			}
 		}
 	}

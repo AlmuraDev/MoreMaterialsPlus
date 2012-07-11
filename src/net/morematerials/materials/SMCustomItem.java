@@ -29,20 +29,12 @@ import net.morematerials.handlers.TheBasicHandler;
 import net.morematerials.manager.MainManager;
 import net.morematerials.smp.SmpPackage;
 
-import org.bukkit.Bukkit;
-import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
-import org.getspout.spoutapi.block.SpoutBlock;
-import org.getspout.spoutapi.material.CustomItem;
 import org.getspout.spoutapi.material.item.GenericCustomTool;
-import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class SMCustomItem extends GenericCustomTool {
 	private Integer damage = null;
-	private Integer maxDurability = null;
+	private short maxDurability = 0;
 	private MaterialAction actionL = null;
 	private MaterialAction actionR = null;
 	private boolean stackable = true;
@@ -71,7 +63,7 @@ public class SMCustomItem extends GenericCustomTool {
 		}
 		
 		if (durability != null && durability > 0) {
-			this.maxDurability = durability;
+			this.maxDurability = durability.shortValue();
 		}
 		
 		if (config.isConfigurationSection("Lclick")) {
@@ -125,7 +117,7 @@ public class SMCustomItem extends GenericCustomTool {
 		return this.actionR;
 	}
 	
-	public Integer getMaxDurability() {
+	public short getMaxDurability() {
 		return this.maxDurability;
 	}
 	
