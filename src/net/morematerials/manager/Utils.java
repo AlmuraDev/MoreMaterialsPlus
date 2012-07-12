@@ -25,6 +25,9 @@
 package net.morematerials.manager;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import jline.internal.Log;
 
 import net.morematerials.Main;
 
@@ -78,16 +81,13 @@ public class Utils {
 	}
 
 	public void log(String logMessage, Level level) {
-		if (level == Level.WARNING) {
-			// TODO add console text color yellow
-			System.out.println("[" + this.plugin.getDescription().getName() + "] Warning: " + logMessage);
-		} else if (level == Level.SEVERE) {
-			// TODO add console text color red
-			System.out.println("[" + this.plugin.getDescription().getName() + "] ERROR: " + logMessage);
+		Logger loglevel = Logger.getLogger("Minecraft");
+		if (level == Level.WARNING) {			
+			loglevel.warning("[" + this.plugin.getDescription().getName() + "] Warning: " + logMessage);
+		} else if (level == Level.SEVERE) {			
+			loglevel.severe("[" + this.plugin.getDescription().getName() + "] ERROR: " + logMessage);			
 		} else {
-			// TODO add console text color normal
-			System.out.println("[" + this.plugin.getDescription().getName() + "] " + logMessage);
+			loglevel.info("[" + this.plugin.getDescription().getName() + "] " + logMessage);
 		}
 	}
-
 }
